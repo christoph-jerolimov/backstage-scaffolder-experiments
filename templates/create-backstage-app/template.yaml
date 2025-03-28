@@ -2,12 +2,13 @@ apiVersion: scaffolder.backstage.io/v1beta3
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
 kind: Template
 metadata:
+  namespace: backstage-plugin-templates
   name: create-backstage-app
   title: Create Backstage app
   description: Create a new Backstage app
 spec:
-  owner: user:guest
-  type: demo
+  owner: user:christoph-jerolimov
+  type: Backstage
 
   # These parameters are used to generate the input form in the frontend, and are
   # used to gather input data for the execution of the template.

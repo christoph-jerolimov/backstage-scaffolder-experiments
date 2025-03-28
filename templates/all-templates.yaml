@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  namespace: backstage-plugin-templates
+  name: all-templates
+  title: backstage-plugin-templates - all templates
+spec:
+  targets:
+    - ./all-backstage-templates.yaml
+    - ./all-demo-templates.yaml

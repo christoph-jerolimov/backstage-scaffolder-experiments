@@ -3,12 +3,12 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   namespace: backstage-plugin-templates
-  name: hello-world
-  title: Hello world
-  description: An example template that applies a variable to a simple Node.js service
+  name: create-backstage-plugin
+  title: Create Backstage plugin
+  description: Create a new Backstage plugin...
 spec:
   owner: user:christoph-jerolimov
-  type: Demo
+  type: Backstage
 
   # These parameters are used to generate the input form in the frontend, and are
   # used to gather input data for the execution of the template.
@@ -20,32 +20,32 @@ spec:
         name:
           title: Name
           type: string
-          description: Unique name of the component
+          description: Unique name of the plugin
           ui:autofocus: true
+        add-frontend-plugin:
+          title: Add a frontend plugin
+          type: boolean
+        add-backend-plugin:
+          title: Add a backend plugin
+          type: boolean
+        add-catalog-backend-module:
+          title: Add a catalog backend module
+          type: boolean
+        add-catalog-frontend-module:
+          title: Add a catalog frontend module
+          type: boolean
+        add-scaffolder-module:
+          title: Add a scaffolder module
+          type: boolean
 
   # These steps are executed in the scaffolder backend, using data that we gathered
   # via the parameters above.
   steps:
-    # Each step executes an action, in this case one templates files into the working directory.
-    - id: fetch-base
-      name: Fetch Base
-      action: fetch:template
-      input:
-        url: ./content
-        values:
-          name: ${{ parameters.name }}
-
     - id: log-files
       name: Log files
       action: debug:log
       input:
         listWorkspace: true
-
-    - id: log-files-with-contents
-      name: Log files with contents
-      action: debug:log
-      input:
-        listWorkspace: with-contents
 
   # Outputs are displayed to the user after a successful execution of the template.
   output:

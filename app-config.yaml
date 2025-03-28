@@ -80,15 +80,15 @@ catalog:
   locations:
     # Local example data, file locations are relative to the backend process, typically `packages/backend`
     - type: file
-      target: ../../examples/org.yaml
+      target: ../../catalog-info.yaml
+      rules:
+        - allow: [Component]
+    - type: file
+      target: ../../templates/owner.yaml
       rules:
         - allow: [User, Group]
     - type: file
-      target: ../../templates/hello-world/template.yaml
-      rules:
-        - allow: [Template]
-    - type: file
-      target: ../../templates/create-backstage-app/template.yaml
+      target: ../../templates/all-templates.yaml
       rules:
         - allow: [Template]
 

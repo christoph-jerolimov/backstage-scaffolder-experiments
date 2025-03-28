@@ -1,8 +1,6 @@
-# [Backstage](https://backstage.io)
+# Some [Backstage](https://backstage.io) software template experiments 🧪
 
-This is your newly scaffolded Backstage App, Good Luck!
-
-To start the app, run:
+To run the test app locally:
 
 ```sh
 yarn install
