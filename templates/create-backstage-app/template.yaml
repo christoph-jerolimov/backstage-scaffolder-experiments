@@ -33,6 +33,13 @@ spec:
       input:
         name: ${{ parameters.name }}
 
+    - id: delete-files
+      name: Delete files
+      action: fs:delete
+      input:
+        files:
+          - .git
+
     - id: log-files
       name: Log files
       action: debug:log
