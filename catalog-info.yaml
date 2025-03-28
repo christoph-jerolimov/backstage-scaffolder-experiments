@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  namespace: backstage-plugin-templates
-  name: backstage-plugin-templates
+  namespace: backstage-scaffolder-experiments
+  name: backstage-scaffolder-experiments
   # description: An example of a Backstage application.
   # Example for optional annotations
   # annotations:

@@ -1,9 +1,9 @@
 app:
-  title: Backstage Plugin Templates
+  title: Backstage scaffolder experiments
   baseUrl: http://localhost:3000
 
 organization:
-  name: My Company
+  name: Backstage scaffolder experiments
 
 backend:
   # Used for enabling authentication, secret is shared by all backend plugins

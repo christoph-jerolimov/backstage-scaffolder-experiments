@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
 kind: Template
 metadata:
-  namespace: backstage-plugin-templates
+  namespace: backstage-scaffolder-experiments
   name: create-backstage-app
   title: Create Backstage app
   description: Create a new Backstage app

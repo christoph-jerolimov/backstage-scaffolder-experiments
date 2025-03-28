@@ -1,4 +1,4 @@
-# Some [Backstage](https://backstage.io) software template experiments 🧪
+# Some [Backstage](https://backstage.io) scaffolder experiments 🧪
 
 To run the test app locally:
 

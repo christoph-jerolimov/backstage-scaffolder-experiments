@@ -1,9 +1,9 @@
 apiVersion: backstage.io/v1alpha1
 kind: Location
 metadata:
-  namespace: backstage-plugin-templates
+  namespace: backstage-scaffolder-experiments
   name: all-backstage-templates
-  title: backstage-plugin-templates - all backstage templates
+  title: backstage-scaffolder-experiments - all backstage templates
 spec:
   targets:
     - ./create-backstage-app/template.yaml
