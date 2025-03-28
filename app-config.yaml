@@ -87,6 +87,10 @@ catalog:
       target: ../../templates/hello-world/template.yaml
       rules:
         - allow: [Template]
+    - type: file
+      target: ../../templates/create-backstage-app/template.yaml
+      rules:
+        - allow: [Template]
 
     ## Uncomment these lines to add more example data
     # - type: url

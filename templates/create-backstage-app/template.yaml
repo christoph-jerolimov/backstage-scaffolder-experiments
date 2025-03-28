@@ -2,9 +2,9 @@ apiVersion: scaffolder.backstage.io/v1beta3
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
 kind: Template
 metadata:
-  name: hello-world
-  title: Hello world
-  description: An example template that applies a variable to a simple Node.js service
+  name: create-backstage-app
+  title: Create Backstage app
+  description: Create a new Backstage app
 spec:
   owner: user:guest
   type: demo
@@ -19,32 +19,24 @@ spec:
         name:
           title: Name
           type: string
-          description: Unique name of the component
+          description: Unique name of the app
           ui:autofocus: true
 
   # These steps are executed in the scaffolder backend, using data that we gathered
   # via the parameters above.
   steps:
     # Each step executes an action, in this case one templates files into the working directory.
-    - id: fetch-base
-      name: Fetch Base
-      action: fetch:template
+    - id: create-backstage-app
+      name: Create Backstage app
+      action: demo:backstage:create-app
       input:
-        url: ./content
-        values:
-          name: ${{ parameters.name }}
+        name: ${{ parameters.name }}
 
     - id: log-files
       name: Log files
       action: debug:log
       input:
         listWorkspace: true
-
-    - id: log-files-with-contents
-      name: Log files with contents
-      action: debug:log
-      input:
-        listWorkspace: with-contents
 
   # Outputs are displayed to the user after a successful execution of the template.
   output:

@@ -1,4 +1,3 @@
-/***/
 /**
  * The demo module for @backstage/plugin-scaffolder-backend.
  *

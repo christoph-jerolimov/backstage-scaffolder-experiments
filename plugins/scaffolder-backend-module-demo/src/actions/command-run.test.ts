@@ -1,23 +1,26 @@
-import { createExampleAction } from './example';
-import {createMockActionContext} from '@backstage/plugin-scaffolder-node-test-utils'
+import { createMockActionContext } from '@backstage/plugin-scaffolder-node-test-utils'
+
+import { createCommandRunAction } from './command-run';
 
 describe('createExampleAction', () => {
   it('should call action', async () => {
-    const action = createExampleAction();
+    const action = createCommandRunAction();
 
     await expect(action.handler(createMockActionContext({
       input: {
-        myParameter: 'test',
+        command: 'test',
+        args: [],
       },
     }))).resolves.toBeUndefined()
   });
 
   it('should fail when passing foo', async () => {
-    const action = createExampleAction();
+    const action = createCommandRunAction();
 
     await expect(action.handler(createMockActionContext({
       input: {
-        myParameter: 'foo',
+        command: 'foo',
+        args: [],
       },
     }))).rejects.toThrow("myParameter cannot be 'foo'")
   });
