@@ -1,0 +1,76 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
+kind: Template
+metadata:
+  namespace: backstage-scaffolder-experiments
+  name: notifications-demo
+  title: Test Notifications
+  description: scaffolder demo sending notification
+spec:
+  owner: user:christoph-jerolimov
+  type: Demo
+
+  # These parameters are used to generate the input form in the frontend, and are
+  # used to gather input data for the execution of the template.
+  parameters:
+    - title: Notification
+      required:
+        - recipients
+        - title
+      properties:
+        recipients:
+          title: Recipients
+          type: string
+          description: Notification recipients
+          default: entity
+          enum:
+            - entity
+            - broadcast
+        entityRefs:
+          title: Entities
+          type: array
+          description: Entities to send the notification. Required if recipients is entity
+          ui:field: MultiEntityPicker
+          ui:options:
+            defaultNamespace: default
+        title:
+          title: Title
+          type: string
+          description: Notification title
+        description:
+          title: Description
+          type: string
+          description: Notification longer description
+        link:
+          title: Link
+          type: string
+          description: Notification link
+        severity:
+          title: Severity
+          type: string
+          description: Notification severity
+          default: normal
+          enum:
+            - low
+            - normal
+            - high
+            - critical
+        scope:
+          title: Scope
+          type: string
+          description: Notification scope
+
+  # These steps are executed in the scaffolder backend, using data that we gathered
+  # via the parameters above.
+  steps:
+    - id: send-notification
+      name: Send notification
+      action: notification:send
+      input:
+        recipients: ${{ parameters.recipients }}
+        entityRefs: ${{ parameters.entityRefs }}
+        title: ${{ parameters.title }}
+        description: ${{ parameters.description }}
+        link: ${{ parameters.link }}
+        severity: ${{ parameters.severity }}
+        scope: ${{ parameters.scope }}

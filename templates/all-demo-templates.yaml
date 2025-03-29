@@ -7,3 +7,4 @@ metadata:
 spec:
   targets:
     - ./hello-world/template.yaml
+    - ./notifications-demo/template.yaml
