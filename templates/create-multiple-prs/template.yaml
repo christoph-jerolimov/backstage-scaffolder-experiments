@@ -1,0 +1,96 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
+kind: Template
+metadata:
+  namespace: backstage-scaffolder-experiments
+  name: create-multiple-prs
+  title: Create multiple PRs
+  description: Create multiple GitHub PRs
+  tags:
+    - github
+spec:
+  owner: user:christoph-jerolimov
+  type: GitHub
+
+  # These parameters are used to generate the input form in the frontend, and are
+  # used to gather input data for the execution of the template.
+  parameters:
+    - title: Parameters
+      required:
+        - name
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Unique name used for everything in this demo ;)
+          ui:autofocus: true
+
+  # These steps are executed in the scaffolder backend, using data that we gathered
+  # via the parameters above.
+  steps:
+    # Each step executes an action, in this case one templates files into the working directory.
+    - id: fetch-base
+      name: Load templates
+      action: fetch:template
+      input:
+        url: ./content
+        values:
+          name: ${{ parameters.name }}
+
+    - id: log-files
+      name: Log files (debug)
+      action: debug:log
+      input:
+        listWorkspace: true
+
+    - id: log-files-with-contents
+      name: Log file content (debug)
+      action: debug:log
+      input:
+        listWorkspace: with-contents
+
+    - id: publish-github-pull-request1
+      name: Create PR 1
+      action: publish:github:pull-request
+      input:
+        repoUrl: github.com?owner=christoph-jerolimov&repo=asdf
+        branchName: ${{ parameters.name }}
+        title: "Automated PR: ${{ parameters.name }}"
+        description: |
+          ## Automated PR
+          
+          Create new component for `${{ parameters.name }}`
+        sourcePath: repo1
+        update: true
+        #gitAuthorName: asd
+        #gitAuthorEmail: asd
+
+    - id: publish-github-pull-request2
+      name: Create PR 2
+      action: publish:github:pull-request
+      input:
+        repoUrl: github.com?owner=christoph-jerolimov&repo=asdf2
+        branchName: ${{ parameters.name }}
+        title: "Automated PR: ${{ parameters.name }}"
+        description: |
+          ## Automated PR
+          
+          Create new component for `${{ parameters.name }}`
+        sourcePath: repo2
+        update: true
+        #gitAuthorName: asd
+        #gitAuthorEmail: asd
+
+    - id: log-output
+      name: Log steps (debug)
+      action: debug:log
+      input:
+        message: ${{ steps | dump }}
+
+  # Outputs are displayed to the user after a successful execution of the template.
+  output:
+    links:
+      - title: "PR #${{ steps['publish-github-pull-request1'].output.pullRequestNumber }} on repo1"
+        url: ${{ steps['publish-github-pull-request1'].output.remoteUrl }}
+      - title: "PR #${{ steps['publish-github-pull-request1'].output.pullRequestNumber }} on repo2"
+        url: ${{ steps['publish-github-pull-request2'].output.remoteUrl }}

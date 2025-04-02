@@ -6,5 +6,6 @@ metadata:
   title: backstage-scaffolder-experiments - all demo templates
 spec:
   targets:
+    - ./create-multiple-prs/template.yaml
     - ./hello-world/template.yaml
     - ./notifications-demo/template.yaml
