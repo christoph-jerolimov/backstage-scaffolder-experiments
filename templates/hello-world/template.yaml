@@ -6,6 +6,8 @@ metadata:
   name: hello-world
   title: Hello world
   description: An example template that applies a variable to a simple Node.js service
+  tags:
+    - demo
 spec:
   owner: user:christoph-jerolimov
   type: Demo

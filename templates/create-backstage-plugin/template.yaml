@@ -6,6 +6,8 @@ metadata:
   name: create-backstage-plugin
   title: Create Backstage plugin
   description: Create a new Backstage plugin...
+  tags:
+    - backstage
 spec:
   owner: user:christoph-jerolimov
   type: Backstage

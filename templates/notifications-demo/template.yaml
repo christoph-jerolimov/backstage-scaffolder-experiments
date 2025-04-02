@@ -6,6 +6,9 @@ metadata:
   name: notifications-demo
   title: Test Notifications
   description: scaffolder demo sending notification
+  tags:
+    - demo
+    - notifications
 spec:
   owner: user:christoph-jerolimov
   type: Demo

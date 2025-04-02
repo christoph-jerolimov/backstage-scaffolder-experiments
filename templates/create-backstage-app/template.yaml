@@ -6,6 +6,8 @@ metadata:
   name: create-backstage-app
   title: Create Backstage app
   description: Create a new Backstage app
+  tags:
+    - backstage
 spec:
   owner: user:christoph-jerolimov
   type: Backstage
