@@ -10,20 +10,35 @@ metadata:
     - github
 spec:
   owner: user:christoph-jerolimov
-  type: GitHub
+  type: Demo
 
   # These parameters are used to generate the input form in the frontend, and are
   # used to gather input data for the execution of the template.
   parameters:
-    - title: Parameters
-      required:
-        - name
+    - title: Requested change
       properties:
-        name:
-          title: Name
+        change_title:
+          title: Change title
           type: string
-          description: Unique name used for everything in this demo ;)
+          description: Summary or reason of your change
           ui:autofocus: true
+        component_name:
+          title: Component name
+          type: string
+          description: Used in the generated YAML content
+      required:
+        - change_title
+        - component_name
+
+    - title: Pull Requests
+      properties:
+        pr_branchname:
+          title: Branch name
+          type: string
+          description: Lower case, etc.
+          ui:autofocus: true
+      required:
+        - pr_branchname
 
   # These steps are executed in the scaffolder backend, using data that we gathered
   # via the parameters above.
@@ -35,7 +50,7 @@ spec:
       input:
         url: ./content
         values:
-          name: ${{ parameters.name }}
+          name: ${{ parameters.component_name }}
 
     - id: log-files
       name: Log files (debug)
@@ -54,12 +69,12 @@ spec:
       action: publish:github:pull-request
       input:
         repoUrl: github.com?owner=christoph-jerolimov&repo=asdf
-        branchName: ${{ parameters.name }}
-        title: "Automated PR: ${{ parameters.name }}"
+        branchName: ${{ parameters.pr_branchname }}
+        title: "Automated PR: ${{ parameters.change_title }}"
         description: |
-          ## Automated PR
+          ## Automated PRs can contain formatted descriptions...
           
-          Create new component for `${{ parameters.name }}`
+          Create new component `${{ parameters.component_name }}`
         sourcePath: repo1
         update: true
         #gitAuthorName: asd
@@ -70,12 +85,12 @@ spec:
       action: publish:github:pull-request
       input:
         repoUrl: github.com?owner=christoph-jerolimov&repo=asdf2
-        branchName: ${{ parameters.name }}
-        title: "Automated PR: ${{ parameters.name }}"
+        branchName: ${{ parameters.pr_branchname }}
+        title: "Automated PR: ${{ parameters.change_title }}"
         description: |
-          ## Automated PR
+          ## Automated PRs can contain formatted descriptions...
           
-          Create new component for `${{ parameters.name }}`
+          Create new component `${{ parameters.component_name }}`
         sourcePath: repo2
         update: true
         #gitAuthorName: asd
