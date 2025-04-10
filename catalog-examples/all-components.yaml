@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: catalog-examples-all-components
+spec:
+  targets:
+    - ./components/system-a-component-a.yaml
+    - ./components/system-a-component-b.yaml
+    - ./components/system-a-component-c.yaml
+    - ./components/system-b-component-a.yaml
+    - ./components/system-b-component-b.yaml
+    - ./components/system-b-component-c.yaml
+    - ./components/system-c-component-a.yaml
+    - ./components/system-c-component-b.yaml
+    - ./components/system-c-component-c.yaml

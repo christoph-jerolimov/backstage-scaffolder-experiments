@@ -7,5 +7,6 @@ metadata:
 spec:
   targets:
     - ./create-multiple-prs/template.yaml
+    - ./entitypicker-demo/template.yaml
     - ./hello-world/template.yaml
     - ./notifications-demo/template.yaml

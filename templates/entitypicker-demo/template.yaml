@@ -1,0 +1,80 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
+kind: Template
+metadata:
+  namespace: backstage-scaffolder-experiments
+  name: entitypicker-demo
+  title: EntityPicker Demo
+  description: EntityPicker demo
+  tags:
+    - demo
+    - custom-components
+spec:
+  owner: user:christoph-jerolimov
+  type: Demo
+
+  # These parameters are used to generate the input form in the frontend, and are
+  # used to gather input data for the execution of the template.
+  parameters:
+    - title: EntityPickers
+
+      properties:
+        defaultEntityPicker:
+          title: Default EntityPicker
+          ui:field: Headline
+
+        system:
+          title: Default EntityPicker - System
+          type: string
+          ui:field: EntityPicker
+          ui:options:
+            catalogFilter:
+              kind: System
+
+        ownedSystem:
+          title: Default OwnedEntityPicker - System
+          type: string
+          ui:field: OwnedEntityPicker
+          ui:options:
+            catalogFilter:
+              kind: System
+
+        component:
+          title: Default EntityPicker - Component
+          description: But shows all systems and can not depend on the System dropdown
+          type: string
+          ui:field: EntityPicker
+          ui:options:
+            catalogFilter:
+              kind: Component
+
+        customEntityPicker:
+          title: Custom EntityPicker
+          ui:field: Headline
+
+        hierarchicalEntityRef:
+          title: HierarchicalEntityPicker - System
+          description: Not yet configurable multi-level picker
+          type: object
+          ui:field: HierarchicalEntityPicker
+
+        ownedHierarchicalEntityRef:
+          title: OwnedHierarchicalEntityPicker - System
+          description: Not yet configurable multi-level picker
+          type: object
+          ui:field: OwnedHierarchicalEntityPicker
+
+  # These steps are executed in the scaffolder backend, using data that we gathered
+  # via the parameters above.
+  steps:
+    - id: send-notification
+      name: Send notification
+      action: notification:send
+      input:
+        recipients: ${{ parameters.recipients }}
+        entityRefs: ${{ parameters.entityRefs }}
+        title: ${{ parameters.title }}
+        description: ${{ parameters.description }}
+        link: ${{ parameters.link }}
+        severity: ${{ parameters.severity }}
+        scope: ${{ parameters.scope }}

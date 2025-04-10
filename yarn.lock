@@ -14109,6 +14109,7 @@ __metadata:
     "@backstage/plugin-org": "npm:^0.6.37"
     "@backstage/plugin-permission-react": "npm:^0.4.32"
     "@backstage/plugin-scaffolder": "npm:^1.29.0"
+    "@backstage/plugin-scaffolder-react": "npm:^1.14.6"
     "@backstage/plugin-search": "npm:^1.4.24"
     "@backstage/plugin-search-react": "npm:^1.8.7"
     "@backstage/plugin-signals": "npm:^0.0.17"
@@ -14120,6 +14121,7 @@ __metadata:
     "@backstage/theme": "npm:^0.6.4"
     "@material-ui/core": "npm:^4.12.2"
     "@material-ui/icons": "npm:^4.9.1"
+    "@material-ui/lab": "npm:^4.0.0-alpha.61"
     "@playwright/test": "npm:^1.32.3"
     "@testing-library/dom": "npm:^9.0.0"
     "@testing-library/jest-dom": "npm:^6.0.0"
@@ -14131,6 +14133,7 @@ __metadata:
     react-dom: "npm:^18.0.2"
     react-router: "npm:^6.3.0"
     react-router-dom: "npm:^6.3.0"
+    react-use: "npm:^17.6.0"
   languageName: unknown
   linkType: soft
 
@@ -28098,7 +28101,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-use@npm:^17.2.4, react-use@npm:^17.3.2, react-use@npm:^17.4.0":
+"react-use@npm:^17.2.4, react-use@npm:^17.3.2, react-use@npm:^17.4.0, react-use@npm:^17.6.0":
   version: 17.6.0
   resolution: "react-use@npm:17.6.0"
   dependencies:

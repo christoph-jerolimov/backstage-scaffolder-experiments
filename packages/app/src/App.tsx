@@ -39,6 +39,13 @@ import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/
 import { NotificationsPage } from '@backstage/plugin-notifications';
 import { SignalsDisplay } from '@backstage/plugin-signals';
 
+import { ScaffolderFieldExtensions } from '@backstage/plugin-scaffolder-react';
+import {
+  HeadlineExtension,
+  HierarchicalEntityPickerExtension,
+  OwnedHierarchicalEntityPickerExtension,
+} from './scaffolder/extensions';
+
 const app = createApp({
   apis,
   bindRoutes({ bind }) {
@@ -82,7 +89,13 @@ const routes = (
         <ReportIssue />
       </TechDocsAddons>
     </Route>
-    <Route path="/create" element={<ScaffolderPage />} />
+    <Route path="/create" element={<ScaffolderPage />}>
+      <ScaffolderFieldExtensions>
+        <HeadlineExtension />
+        <HierarchicalEntityPickerExtension />
+        <OwnedHierarchicalEntityPickerExtension />
+      </ScaffolderFieldExtensions>
+    </Route>
     <Route path="/api-docs" element={<ApiExplorerPage />} />
     <Route
       path="/catalog-import"

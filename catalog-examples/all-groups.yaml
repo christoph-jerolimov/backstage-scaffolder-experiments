@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: catalog-examples-all-groups
+spec:
+  targets:
+    - ./groups/group-a.yaml
+    - ./groups/group-b.yaml

@@ -1,0 +1,10 @@
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: system-b-component-a
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group-b
+  system: system-b

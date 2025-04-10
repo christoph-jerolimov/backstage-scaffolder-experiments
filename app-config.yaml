@@ -84,6 +84,22 @@ catalog:
       rules:
         - allow: [Component]
     - type: file
+      target: ../../catalog-examples/all-components.yaml
+      rules:
+        - allow: [Component]
+    - type: file
+      target: ../../catalog-examples/all-systems.yaml
+      rules:
+        - allow: [System]
+    - type: file
+      target: ../../catalog-examples/all-groups.yaml
+      rules:
+        - allow: [Group]
+    - type: file
+      target: ../../catalog-examples/all-users.yaml
+      rules:
+        - allow: [User]
+    - type: file
       target: ../../templates/owner.yaml
       rules:
         - allow: [User, Group]

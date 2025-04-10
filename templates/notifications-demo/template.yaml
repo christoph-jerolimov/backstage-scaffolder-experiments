@@ -4,7 +4,7 @@ kind: Template
 metadata:
   namespace: backstage-scaffolder-experiments
   name: notifications-demo
-  title: Test Notifications
+  title: Notifications Demo
   description: scaffolder demo sending notification
   tags:
     - demo
