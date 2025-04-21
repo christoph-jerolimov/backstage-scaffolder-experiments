@@ -1,0 +1,7 @@
+if: ${{ parameters.publish === "gitlab-repo" }}
+id: publish-gitlab
+name: Create GitLab repo
+action: publish:gitlab
+input:
+  repoUrl: gitlab.com?owner=christoph-jerolimov&repo=${{ parameters.git_repo }}
+  branchName: ${{ parameters.pr_branchname }}

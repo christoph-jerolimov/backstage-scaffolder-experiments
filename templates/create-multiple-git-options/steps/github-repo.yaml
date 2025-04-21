@@ -1,0 +1,6 @@
+if: ${{ parameters.publish === "github-repo" }}
+id: publish-github
+name: Publish GitHub
+action: publish:github
+input:
+  repoUrl: github.com?owner=christoph-jerolimov&repo=${{ parameters.git_repo }}

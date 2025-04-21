@@ -1,0 +1,15 @@
+if: ${{ parameters.publish === "github-pr" }}
+id: publish-github-pull-request
+name: Create PR
+action: publish:github:pull-request
+input:
+  repoUrl: github.com?owner=christoph-jerolimov&repo=asdf
+  branchName: ${{ parameters.pr_branchname }}
+  title: "Automated PR: ${{ parameters.change_title }}"
+  description: |
+    ## Automated PRs can contain formatted descriptions...
+    
+    Create new component `${{ parameters.component_name }}`
+  update: true
+  #gitAuthorName: asd
+  #gitAuthorEmail: asd

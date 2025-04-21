@@ -1,0 +1,15 @@
+if: ${{ parameters.publish === "gitlab-mr" }}
+id: publish-gitlab-merge-request
+name: Create MR
+action: publish:gitlab:merge-request
+input:
+  repoUrl: gitlab.com?owner=christoph-jerolimov&repo=asdf
+  branchName: ${{ parameters.pr_branchname }}
+  title: "Automated PR: ${{ parameters.change_title }}"
+  description: |
+    ## Automated MRs can contain formatted descriptions...
+    
+    Create new component `${{ parameters.component_name }}`
+  update: true
+  #gitAuthorName: asd
+  #gitAuthorEmail: asd

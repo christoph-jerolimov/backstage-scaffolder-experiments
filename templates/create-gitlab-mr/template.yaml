@@ -1,0 +1,92 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
+kind: Template
+metadata:
+  namespace: backstage-scaffolder-experiments
+  name: create-gitlab-mr
+  title: Create GitLab MR
+  description: Create GitLab MR
+  tags:
+    - gitlab
+spec:
+  owner: user:christoph-jerolimov
+  type: Demo
+
+  # These parameters are used to generate the input form in the frontend, and are
+  # used to gather input data for the execution of the template.
+  parameters:
+    - title: Requested change
+      properties:
+        change_title:
+          title: Change title
+          type: string
+          description: Summary or reason of your change
+          ui:autofocus: true
+        component_name:
+          title: Component name
+          type: string
+          description: Used in the generated YAML content
+      required:
+        - change_title
+        - component_name
+
+    - title: Pull Requests
+      properties:
+        pr_branchname:
+          title: Branch name
+          type: string
+          description: Lower case, etc.
+          ui:autofocus: true
+      required:
+        - pr_branchname
+
+  # These steps are executed in the scaffolder backend, using data that we gathered
+  # via the parameters above.
+  steps:
+    # Each step executes an action, in this case one templates files into the working directory.
+    - id: fetch-base
+      name: Load templates
+      action: fetch:template
+      input:
+        url: ./content
+        values:
+          name: ${{ parameters.component_name }}
+
+    - id: log-files
+      name: Log files (debug)
+      action: debug:log
+      input:
+        listWorkspace: true
+
+    - id: log-files-with-contents
+      name: Log file content (debug)
+      action: debug:log
+      input:
+        listWorkspace: with-contents
+
+    - id: publish-gitlab-merge-request
+      name: Create MR
+      action: publish:gitlab:merge-request
+      input:
+        repoUrl: gitlab.com?owner=christoph-jerolimov&repo=asdf
+        branchName: ${{ parameters.pr_branchname }}
+        title: "Automated PR: ${{ parameters.change_title }}"
+        description: |
+          ## Automated MRs can contain formatted descriptions...
+          
+          Create new component `${{ parameters.component_name }}`
+        update: true
+        #gitAuthorName: asd
+        #gitAuthorEmail: asd
+
+    - id: log-output
+      name: Log steps (debug)
+      action: debug:log
+      input:
+        message: ${{ steps | dump }}
+
+  # Outputs are displayed to the user after a successful execution of the template.
+  output:
+    links:
+      - title: "PR #${{ steps['publish-gitlab-merge-request'].output.pullRequestNumber }}"
+        url: ${{ steps['publish-gitlab-merge-request'].output.remoteUrl }}

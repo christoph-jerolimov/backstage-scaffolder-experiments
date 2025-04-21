@@ -1,0 +1,100 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
+kind: Template
+metadata:
+  namespace: backstage-scaffolder-experiments
+  name: create-multiple-git-options
+  title: Create GitHub/GitLab PR/repo
+  description: Create GitHub/GitLab PR/repo
+  tags:
+    - github
+    - gitlab
+spec:
+  owner: user:christoph-jerolimov
+  type: Demo
+
+  # These parameters are used to generate the input form in the frontend, and are
+  # used to gather input data for the execution of the template.
+  parameters:
+    - title: Requested change
+      properties:
+        change_title:
+          title: Change title
+          type: string
+          description: Summary or reason of your change
+          ui:autofocus: true
+        component_name:
+          title: Component name
+          type: string
+          description: Used in the generated YAML content
+      required:
+        - change_title
+        - component_name
+
+    - title: Git repository
+      properties:
+
+        publish:
+          title: Publish variant
+          type: string
+          #description: TODO
+          #default: github-pr
+          enum:
+            - github-pr
+            - github-repo
+            - gitlab-mr
+            - gitlab-repo
+          enumNames:
+            - GitHub PR
+            - GitHub repo
+            - GitLab MR
+            - GitLab repo
+
+        pr_branchname:
+          title: Branch name
+          type: string
+          description: Lower case, etc.
+          ui:autofocus: true
+      required:
+        - pr_branchname
+
+  # These steps are executed in the scaffolder backend, using data that we gathered
+  # via the parameters above.
+  steps:
+    # Each step executes an action, in this case one templates files into the working directory.
+    - id: fetch-base
+      name: Load templates
+      action: fetch:template
+      input:
+        url: ./content
+        values:
+          name: ${{ parameters.component_name }}
+
+    - id: log-files
+      name: Log files (debug)
+      action: debug:log
+      input:
+        listWorkspace: true
+
+    - id: log-files-with-contents
+      name: Log file content (debug)
+      action: debug:log
+      input:
+        listWorkspace: with-contents
+
+    - $yaml: ./steps/github-pr.yaml
+    - $yaml: ./steps/github-repo.yaml
+    - $yaml: ./steps/gitlab-mr.yaml
+    - $yaml: ./steps/gitlab-repo.yaml
+
+    - id: log-output
+      name: Log steps (debug)
+      action: debug:log
+      input:
+        message: ${{ steps | dump }}
+
+  # Outputs are displayed to the user after a successful execution of the template.
+  output:
+    links:
+      - title: "New GitLab repo #${{ steps['publish-gitlab'].output.remoteUrl }}"
+        url: ${{ steps['publish-gitlab'].output.remoteUrl }}

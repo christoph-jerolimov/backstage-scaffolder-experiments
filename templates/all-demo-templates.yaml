@@ -6,6 +6,11 @@ metadata:
   title: backstage-scaffolder-experiments - all demo templates
 spec:
   targets:
+    - ./create-github-pr/template.yaml
+    - ./create-github-repo/template.yaml
+    - ./create-gitlab-mr/template.yaml
+    - ./create-gitlab-repo/template.yaml
+    - ./create-multiple-git-options/template.yaml
     - ./create-multiple-prs/template.yaml
     - ./entitypicker-demo/template.yaml
     - ./hello-world/template.yaml
