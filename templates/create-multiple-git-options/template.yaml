@@ -82,10 +82,10 @@ spec:
       input:
         listWorkspace: with-contents
 
-    - $yaml: ./steps/github-pr.yaml
-    - $yaml: ./steps/github-repo.yaml
-    - $yaml: ./steps/gitlab-mr.yaml
-    - $yaml: ./steps/gitlab-repo.yaml
+    - $yaml: https://github.com/christoph-jerolimov/backstage-scaffolder-experiments/blob/main/templates/create-multiple-git-options/steps/github-pr.yaml
+    - $yaml: https://github.com/christoph-jerolimov/backstage-scaffolder-experiments/blob/main/templates/create-multiple-git-options/steps/github-repo.yaml
+    - $yaml: https://github.com/christoph-jerolimov/backstage-scaffolder-experiments/blob/main/templates/create-multiple-git-options/steps/gitlab-mr.yaml
+    - $yaml: https://github.com/christoph-jerolimov/backstage-scaffolder-experiments/blob/main/templates/create-multiple-git-options/steps/gitlab-repo.yaml
 
     - id: log-output
       name: Log steps (debug)
